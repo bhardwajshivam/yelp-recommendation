@@ -1,0 +1,24 @@
+app_name: yelp-cost-aware-agent
+environment: local
+data_dir: ./data
+duckdb_path: ./data/yelp.duckdb
+yelp_archive_path: ./Yelp JSON/yelp_dataset.tar
+
+policy:
+  name: baseline
+  planner_model: heuristic-cheap
+  synthesis_model: heuristic-strong
+  validation_mode: risky_only
+  retrieval_depth: 5
+  review_limit_per_business: 5
+  max_context_reviews: 12
+  expose_all_tools: false
+  enable_validation: true
+  fixed_tool_cost: 0.002
+  fixed_retrieval_cost_per_item: 0.0001
+  fixed_compute_cost_per_stage: 0.0005
+  token_cost_in: 0.000001
+  token_cost_out: 0.000002
+  retry_overhead_cost: 0.001
+
+quality_threshold: 0.65

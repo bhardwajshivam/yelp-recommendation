@@ -1,0 +1,46 @@
+policies:
+  - name: baseline
+    planner_model: heuristic-cheap
+    synthesis_model: heuristic-strong
+    validation_mode: risky_only
+    retrieval_depth: 5
+    review_limit_per_business: 5
+    max_context_reviews: 12
+    expose_all_tools: false
+    enable_validation: true
+  - name: expensive_everywhere
+    planner_model: expensive-placeholder
+    synthesis_model: expensive-placeholder
+    validation_mode: always
+    retrieval_depth: 6
+    review_limit_per_business: 6
+    max_context_reviews: 18
+    expose_all_tools: true
+    enable_validation: true
+  - name: reduced_context
+    planner_model: heuristic-cheap
+    synthesis_model: heuristic-strong
+    validation_mode: risky_only
+    retrieval_depth: 5
+    review_limit_per_business: 3
+    max_context_reviews: 6
+    expose_all_tools: false
+    enable_validation: true
+  - name: low_retrieval
+    planner_model: heuristic-cheap
+    synthesis_model: heuristic-strong
+    validation_mode: risky_only
+    retrieval_depth: 3
+    review_limit_per_business: 3
+    max_context_reviews: 8
+    expose_all_tools: false
+    enable_validation: true
+  - name: selective_tools_no_validation
+    planner_model: heuristic-cheap
+    synthesis_model: heuristic-strong
+    validation_mode: never
+    retrieval_depth: 4
+    review_limit_per_business: 4
+    max_context_reviews: 8
+    expose_all_tools: false
+    enable_validation: false

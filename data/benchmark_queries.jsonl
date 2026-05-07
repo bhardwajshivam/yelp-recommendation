@@ -1,0 +1,4 @@
+{"query": "Find affordable sushi in Phoenix and explain why.", "city": "Phoenix", "category": "sushi", "constraints": {"price_preference": "affordable"}}
+{"query": "Compare 3 coffee shops for remote work in Las Vegas.", "city": "Las Vegas", "category": "coffee", "constraints": {"remote_work": true, "count": 3}}
+{"query": "Find underrated Mexican restaurants with strong sentiment but low review count.", "city": "Phoenix", "category": "mexican", "constraints": {"underrated": true, "low_review_count": true}}
+{"query": "What are the top complaints for gyms in Tempe?", "city": "Tempe", "category": "gyms", "constraints": {"complaints_only": true}}
