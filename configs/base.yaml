@@ -3,6 +3,11 @@ environment: local
 data_dir: ./data
 duckdb_path: ./data/yelp.duckdb
 yelp_archive_path: ./Yelp JSON/yelp_dataset.tar
+vllm_base_url: http://vllm:8000/v1
+enable_prometheus_metrics: true
+enable_mlflow: false
+mlflow_tracking_uri: http://mlflow:5000
+mlflow_experiment_name: yelp-cost-aware-agent
 
 policy:
   name: baseline

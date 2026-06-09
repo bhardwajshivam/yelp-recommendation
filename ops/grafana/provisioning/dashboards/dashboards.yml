@@ -1,0 +1,11 @@
+apiVersion: 1
+
+providers:
+  - name: yelp-cost-aware-agent
+    orgId: 1
+    folder: Yelp Cost-Aware Agent
+    type: file
+    disableDeletion: false
+    editable: true
+    options:
+      path: /var/lib/grafana/dashboards

@@ -1,9 +1,11 @@
 from __future__ import annotations
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Response
 from pydantic import BaseModel, Field
 
 from yelp_cost_aware_agent.config import load_config
+from yelp_cost_aware_agent.observability.metrics import record_run_metrics, render_prometheus_metrics
+from yelp_cost_aware_agent.observability.mlflow_tracking import log_run_to_mlflow
 from yelp_cost_aware_agent.orchestrator.service import RecommendationOrchestrator
 from yelp_cost_aware_agent.schemas.models import PolicyConfig, RunResult, UserQuery
 
@@ -25,6 +27,12 @@ def health() -> dict[str, str]:
     return {"status": "ok", "app_name": config.app_name}
 
 
+@router.get("/metrics")
+def metrics() -> Response:
+    body, content_type = render_prometheus_metrics()
+    return Response(content=body, media_type=content_type)
+
+
 @router.post("/recommend", response_model=RunResult)
 def recommend(request: RecommendRequest) -> RunResult:
     config = load_config()
@@ -35,4 +43,8 @@ def recommend(request: RecommendRequest) -> RunResult:
         category=request.category,
         constraints=request.constraints,
     )
-    return orchestrator.run(user_query, policy)
+    result = orchestrator.run(user_query, policy)
+    if config.enable_prometheus_metrics:
+        record_run_metrics(result)
+    log_run_to_mlflow(result, config)
+    return result
