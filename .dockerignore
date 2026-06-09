@@ -1,0 +1,16 @@
+.git
+.venv
+venv
+__pycache__
+*.pyc
+.pytest_cache
+.mypy_cache
+.ruff_cache
+.DS_Store
+Yelp_JSON
+Yelp JSON
+data/*.duckdb
+data/*.duckdb.wal
+mlruns
+ops/grafana/data
+ops/prometheus/data
